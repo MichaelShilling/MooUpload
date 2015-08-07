@@ -1002,11 +1002,13 @@ var MooUpload = new Class({
       noCache: true,
       headers: {
         'Cache-Control': 'no-cache',
+        'Content-Range': 'bytes ' + start + '-' + (start + end - 1) + '/' + file.size,
         'X-Requested-With': 'XMLHttpRequest',
         'X-File-Name': file.name,
         'X-File-Size': file.size,
         'X-File-Id': file_id,
-        'X-File-Resume': resume
+        'X-File-Resume': resume,
+        'X-Chunk-Start-Position' : start
       },
       onSuccess: function(response)
       {
